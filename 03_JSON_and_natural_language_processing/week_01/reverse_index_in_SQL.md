@@ -50,4 +50,9 @@ are        |    7
 
 ## To-do
 
-I've already created the tables, now I just need to do the index based on the guide
+```SQL
+INSERT INTO invert01 (doc_id, keyword)
+SELECT DISTINCT id, LOWER(s.keyword) AS keyword
+FROM docs01 AS D, unnest(string_to_array(D.doc, ' ')) s(keyword)
+ORDER BY id;
+```
